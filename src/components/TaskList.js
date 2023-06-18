@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
+import Task from "./Task";
 
-function TaskList() {
+function TaskList({displayedTasks, selectedCategories, handleDeleteClick}) {
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      {displayedTasks.map((task) => {
+        return (selectedCategories.includes(task.category) || selectedCategories.includes("All") || selectedCategories.length == 0 ? 
+          <Task key={task.text} task={task} handleDeleteButton={() => handleDeleteClick(task)}/> 
+        : null)
+      }
+    )}
     </div>
   );
 }
